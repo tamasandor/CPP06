@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 00:55:00 by atamas            #+#    #+#             */
-/*   Updated: 2025/04/19 01:59:36 by atamas           ###   ########.fr       */
+/*   Updated: 2025/04/22 04:15:48 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,19 @@ class ScalarConverter
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter &original);
 		ScalarConverter &operator=(const ScalarConverter &original);
-	
-	public:
+		
+		public:
 		~ScalarConverter();
 		static void convert(const std::string &initial);
-};
+	};
+	void printChar(int num);
+	bool pseudoLiteral(std::string input);
 
+	typedef enum e_Type
+	{
+		CHAR,
+		INT,
+		FLOAT,
+		DOUBLE
+	} t_Type;
 #endif
