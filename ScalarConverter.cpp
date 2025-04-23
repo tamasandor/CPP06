@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 00:54:56 by atamas            #+#    #+#             */
-/*   Updated: 2025/04/22 04:22:52 by atamas           ###   ########.fr       */
+/*   Updated: 2025/04/23 02:10:09 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,22 @@ t_Type detectType(const std::string &initial)
 		if (std::isdigit(initial[i]) == 0)
 			break;
 	}
-	// integer should skip one + or - sign and than check every char to a isdigit
-	// a number can be also with the length of one
+	if (initial[i] == '\0')
+		return (INT);
 	if (initial.length() == 1)
 		return (CHAR);
-	return (FLOAT);
+	if (initial[i] == '.')
+		i++;
+	for (; i < initial.length(); i++)
+	{
+		if (std::isdigit(initial[i]) == 0)
+			break;
+	}
+	if (initial[i] == '\0')
+		return (DOUBLE);
+	else if (initial[i] == 'f')
+		return (FLOAT);
+	return (ERROR);
 }
 
 void printChar(const int num)
@@ -97,11 +108,11 @@ void ScalarConverter::convert(const std::string &initial)
 	// for float and double values adding the .0(f) after the number should be enough
 	if (pseudoLiteral(initial))
 	return ;
-	// switch case?
 	switch (detectType(initial))
 	{
 		case CHAR:
 			std::cout << "Probably a char" << std::endl;
+			printChar(num);
 			break;
 		case INT:
 			std::cout << "Probably an int" << std::endl;
@@ -111,6 +122,9 @@ void ScalarConverter::convert(const std::string &initial)
 			break;
 		case DOUBLE:
 			std::cout << "Probably a double" << std::endl;
+			break;
+		case ERROR:
+			std::cerr << "Incorrect type!" << std::endl;
 			break;
 	}
 	

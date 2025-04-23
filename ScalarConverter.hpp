@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 00:55:00 by atamas            #+#    #+#             */
-/*   Updated: 2025/04/22 04:15:48 by atamas           ###   ########.fr       */
+/*   Updated: 2025/04/23 01:20:28 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class ScalarConverter
 		CHAR,
 		INT,
 		FLOAT,
-		DOUBLE
+		DOUBLE,
+		ERROR
 	} t_Type;
 #endif
