@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 00:55:00 by atamas            #+#    #+#             */
-/*   Updated: 2025/04/23 01:20:28 by atamas           ###   ########.fr       */
+/*   Updated: 2025/04/23 03:28:20 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@ class ScalarConverter
 		~ScalarConverter();
 		static void convert(const std::string &initial);
 	};
-	void printChar(int num);
 	bool pseudoLiteral(std::string input);
+	void printChar(const long int num);
+	void printInt(const std::string &initial);
+	void printFloat(const std::string &initial);
+	// void printInt(const std::string &initial);
+
 
 	typedef enum e_Type
 	{

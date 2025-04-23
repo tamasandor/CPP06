@@ -6,13 +6,13 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 00:54:56 by atamas            #+#    #+#             */
-/*   Updated: 2025/04/23 02:10:09 by atamas           ###   ########.fr       */
+/*   Updated: 2025/04/23 03:45:50 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-#include "cstdlib"
-
+#include <cstdlib>
+#include <limits>
 
 ScalarConverter::ScalarConverter()
 {
@@ -65,14 +65,49 @@ t_Type detectType(const std::string &initial)
 	return (ERROR);
 }
 
-void printChar(const int num)
+void printChar(const long int num)
 {
-	if (std::isprint(num) == 0)
-	{
+	if (num < 0 || num > 126 || std::isprint(num) == 0)
 		std::cout << "char: Non displayable" << std::endl;
-		return ;
-	}
-	std::cout << "char: '" << static_cast<char>(num) << "'" << std::endl;
+	else
+		std::cout << "char: '" << static_cast<char>(num) << "'" << std::endl;
+}
+
+void printInt(const std::string &initial)
+{
+	long num;
+
+	num = std::atol(initial.c_str());
+	printChar(num);
+	if (num > std::numeric_limits<int>::max() || num < std::numeric_limits<int>::min())
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(num) << std::endl;
+}
+
+void printFloat(const std::string &initial)
+{
+	float num;
+
+	num = std::atof(initial.c_str());
+	printInt(initial);
+	if (num > std::numeric_limits<float>::max() || num < std::numeric_limits<float>::min())
+		std::cout << "float: impossible" << std::endl;
+	else
+		std::cout << "float: " << static_cast<float>(num) << ".0f" << std::endl;
+	
+}
+
+void printDouble(const std::string &initial)
+{
+	double num;
+	
+	num = strtod(initial.c_str(), NULL);
+	printFloat(initial);
+	if (num > std::numeric_limits<double>::max() || num < std::numeric_limits<double>::min())
+		std::cout << "double: impossible" << std::endl;
+	else
+		std::cout << "double: " << static_cast<double>(num) << ".0" << std::endl;
 }
 
 bool pseudoLiteral(std::string input)
@@ -94,45 +129,27 @@ bool pseudoLiteral(std::string input)
 
 void ScalarConverter::convert(const std::string &initial)
 {
-	/*
-	*** TEST ***
-	*/
-	std::cout << initial << std::endl;
-	int num = std::atoi(initial.c_str());
-	std::cout << "Using atoi: " << num << std::endl;
-	/*
-	*** TEST ***
-	*/
-
-	// detect what type is it and call appropriate functions
-	// for float and double values adding the .0(f) after the number should be enough
 	if (pseudoLiteral(initial))
 	return ;
 	switch (detectType(initial))
 	{
 		case CHAR:
-			std::cout << "Probably a char" << std::endl;
-			printChar(num);
+			printChar(initial[0]);
+			std::cout << "int: " << static_cast<int>(initial[0]) << std::endl;
+			std::cout << "float: " << static_cast<float>(initial[0]) << ".0f" << std::endl;
+			std::cout << "double: " << static_cast<double>(initial[0]) << ".0" << std::endl;
 			break;
 		case INT:
-			std::cout << "Probably an int" << std::endl;
+			printInt(initial);
 			break;
 		case FLOAT:
-			std::cout << "Probably a float" << std::endl;
+			printFloat(initial);
 			break;
 		case DOUBLE:
-			std::cout << "Probably a double" << std::endl;
+			printDouble(initial);
 			break;
 		case ERROR:
 			std::cerr << "Incorrect type!" << std::endl;
 			break;
 	}
-	
-	/*
-	*** TEST ***
-	*/
-	// printChar(num);
-	/*
-	*** TEST ***
-	*/
 };
