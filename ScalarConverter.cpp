@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 00:54:56 by atamas            #+#    #+#             */
-/*   Updated: 2025/04/23 03:45:50 by atamas           ###   ########.fr       */
+/*   Updated: 2025/04/27 23:29:34 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,25 @@ void printInt(const std::string &initial)
 	long num;
 
 	num = std::atol(initial.c_str());
-	printChar(num);
+	if (num < 0 || num > 126 || std::isprint(num) == 0)
+	std::cout << "char: Non displayable" << std::endl;
+	else
+	std::cout << "char: '" << static_cast<char>(num) << "'" << std::endl;
+
 	if (num > std::numeric_limits<int>::max() || num < std::numeric_limits<int>::min())
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(num) << std::endl;
+
+	if (num > std::numeric_limits<float>::max() || num < std::numeric_limits<float>::min())
+		std::cout << "float: impossible" << std::endl;
+	else
+		std::cout << "float: " << static_cast<float>(num) << ".0f" << std::endl;
+
+	if (num > std::numeric_limits<double>::max() || num < std::numeric_limits<double>::min())
+		std::cout << "double: impossible" << std::endl;
+	else
+		std::cout << "double: " << static_cast<double>(num) << ".0" << std::endl;
 }
 
 void printFloat(const std::string &initial)
@@ -90,11 +104,25 @@ void printFloat(const std::string &initial)
 	float num;
 
 	num = std::atof(initial.c_str());
-	printInt(initial);
+	if (num < 0 || num > 126 || std::isprint(num) == 0)
+	std::cout << "char: Non displayable" << std::endl;
+	else
+	std::cout << "char: '" << static_cast<char>(num) << "'" << std::endl;
+
+	if (num > std::numeric_limits<int>::max() || num < std::numeric_limits<int>::min())
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(num) << std::endl;
+
 	if (num > std::numeric_limits<float>::max() || num < std::numeric_limits<float>::min())
 		std::cout << "float: impossible" << std::endl;
 	else
 		std::cout << "float: " << static_cast<float>(num) << ".0f" << std::endl;
+
+	if (num > std::numeric_limits<double>::max() || num < std::numeric_limits<double>::min())
+		std::cout << "double: impossible" << std::endl;
+	else
+		std::cout << "double: " << static_cast<double>(num) << ".0" << std::endl;
 	
 }
 
@@ -103,7 +131,21 @@ void printDouble(const std::string &initial)
 	double num;
 	
 	num = strtod(initial.c_str(), NULL);
-	printFloat(initial);
+	if (num < 0 || num > 126 || std::isprint(num) == 0)
+	std::cout << "char: Non displayable" << std::endl;
+	else
+	std::cout << "char: '" << static_cast<char>(num) << "'" << std::endl;
+
+	if (num > std::numeric_limits<int>::max() || num < std::numeric_limits<int>::min())
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(num) << std::endl;
+
+	if (num > std::numeric_limits<float>::max() || num < std::numeric_limits<float>::min())
+		std::cout << "float: impossible" << std::endl;
+	else
+		std::cout << "float: " << static_cast<float>(num) << ".0f" << std::endl;
+
 	if (num > std::numeric_limits<double>::max() || num < std::numeric_limits<double>::min())
 		std::cout << "double: impossible" << std::endl;
 	else
