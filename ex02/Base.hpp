@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 00:13:42 by atamas            #+#    #+#             */
-/*   Updated: 2025/04/28 22:35:13 by atamas           ###   ########.fr       */
+/*   Created: 2025/04/28 21:28:15 by atamas            #+#    #+#             */
+/*   Updated: 2025/04/28 21:48:15 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
+#ifndef BASE_HPP
+#define BASE_HPP
 
-int	main()
+#include <iostream>
+#include <cstdlib>
+
+class Base
 {
-	Base *t = generate();
-	Base *another = generate();
-	identify(t);
-	Base &ref = *t;
-	Base &anotherRef = *another;
-	identify(ref);
-	identify(another);
-	identify(anotherRef);
-	delete t;
-	delete another;
-	return 0;
-}
+	public:
+		virtual ~Base();
+};
+
+Base	*generate(void);
+void	identify(Base *p);
+void	identify(Base &p);
+
+
+#endif
